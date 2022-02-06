@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Add = ({datas}) => {
+const Add = ({datas,deletedFn}) => {
   return (
 
     <div className='container'>
@@ -25,7 +25,7 @@ const Add = ({datas}) => {
         <td>{el.firstName}</td>
         <td>{el.lastName}</td>
         <td>{el.email}</td>
-        <td><button className='btn btn-dark'>Edit</button> <button className='btn btn-success'>Delete</button></td>
+        <td><button className='btn btn-dark'>Edit</button> <button className='btn btn-success' onClick={()=>deletedFn(ind)}>Delete</button></td>
       </tr>
 
       )

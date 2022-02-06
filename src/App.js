@@ -15,13 +15,17 @@ const FetchData =(values) =>{
   setData([...data,values]);
 }
 
+const Delete = (id) =>{
+  let deletedData = data.filter((eld,indd) =>indd != id);
+  setData(deletedData)
 
+}
 
   return (
     <BrowserRouter>
     <Navbar/>
       <Routes>
-        <Route  path="/" element={<Add datas={data}/>} />
+        <Route  path="/" element={<Add datas={data} deletedFn = {Delete}/>} />
         <Route  path="/Form" element={<Form fetch={FetchData}/>} />
       </Routes>
     </BrowserRouter>
