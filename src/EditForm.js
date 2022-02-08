@@ -1,27 +1,36 @@
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const Form = (props) => {
+const EditForm = (props) => {
 
 const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
 const [email, setEmail] = useState('');
 
+const {id}=useParams();
 const navigate= useNavigate();
 
-const saveData = (a) =>{
+useEffect(()=>{
+    let myData= props.datas[id];
+    setFirstName(myData.firstName);
+    setLastName(myData.lastName);
+    setEmail(myData.email);
+},[])
+
+
+
+const upData = (a) =>{
   a.preventDefault();
-  props.fetch({firstName,lastName,email});
-  setFirstName('');
-  setLastName('');
-  setEmail('');
+  props.up({firstName,lastName,email},id);
   navigate('/')
 }
 
   return (
       <div className='container'>
-          <form onSubmit={saveData}>
+          <form onSubmit={upData}>
 
           <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">First Name</label>
@@ -46,7 +55,7 @@ const saveData = (a) =>{
     value={email}
     onChange={(a)=>setEmail(a.target.value)}/>
   </div>
-  <button type="Submit" className="btn btn-primary">Submit</button>
+  <button type="Submit" className="btn btn-primary">Update</button>
 </form>
 
       </div>
@@ -54,4 +63,4 @@ const saveData = (a) =>{
 }
 
 
-export default Form;
+export default EditForm;

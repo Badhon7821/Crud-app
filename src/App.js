@@ -8,6 +8,7 @@ import {useState} from 'react';
 import Child from './component/Child';
 import Comment from './component/Comment';
 import Parent from './component/Parent';
+import EditForm from './EditForm';
 
 function App() {
 
@@ -19,17 +20,26 @@ const FetchData =(values) =>{
 }
 
 
-const [data1, setData1] = useState([]);
-const FatchData1 = (m) =>{
-  setData1([...data1,m]);
-}
-
-
 const Delete = (id) =>{
   let deletedData = data.filter((eld,indd) =>indd != id);
   setData(deletedData)
 
 }
+
+const upDateData=(up,id)=>{
+  let ans=data.map((el,index)=>{
+    if(index==id){
+  return up;
+    }
+    else{
+  return el;
+    }
+  })
+  
+  setData(ans)
+
+  
+  }
 
   return (
     <BrowserRouter>
@@ -37,9 +47,10 @@ const Delete = (id) =>{
       <Routes>
         <Route  path="/" element={<Add datas={data} deletedFn = {Delete}/>} />
         <Route  path="/Form" element={<Form fetch={FetchData}/>} />
+        <Route  path="/EditForm/:id" element={<EditForm up ={upDateData} datas={data}/>} />
       </Routes>
 
-      <Child />
+      
    
     </BrowserRouter>
   );

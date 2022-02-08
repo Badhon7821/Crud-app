@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Add = ({datas,deletedFn}) => {
   return (
 
@@ -25,7 +27,7 @@ const Add = ({datas,deletedFn}) => {
         <td>{el.firstName}</td>
         <td>{el.lastName}</td>
         <td>{el.email}</td>
-        <td><button className='btn btn-dark'>Edit</button> <button className='btn btn-success' onClick={()=>deletedFn(ind)}>Delete</button></td>
+        <td><button className='btn btn-dark'><Link to={`/EditForm/${ind}`}>Edit</Link></button> <button className='btn btn-success' onClick={()=>deletedFn(ind)}>Delete</button></td>
       </tr>
 
       )
