@@ -27,7 +27,7 @@ const Add = ({datas,deletedFn}) => {
         <td>{el.firstName}</td>
         <td>{el.lastName}</td>
         <td>{el.email}</td>
-        <td><button className='btn btn-dark'><Link to={`/EditForm/${ind}`}>Edit</Link></button> <button className='btn btn-success' onClick={()=>deletedFn(ind)}>Delete</button></td>
+        <td><Link to={`/EditForm/${ind}`}><button className='btn btn-dark'>Edit</button></Link> <button className='btn btn-success' onClick={()=>deletedFn(ind)}>Delete</button></td>
       </tr>
 
       )
